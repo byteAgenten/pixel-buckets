@@ -16,6 +16,13 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+  <distributionManagement>
+    <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <url>https://nexus.dev.byteagenten.de/content/repositories/byteagenten-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
 
   <dependencies>
     <dependency>

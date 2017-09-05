@@ -67,7 +67,7 @@ public class BucketsSummaryData {
         return !isEmpty();
     }
 
-    public double getSampleRatio() {
+    public Double getSampleRatio() {
         return sampleRatio;
     }
 

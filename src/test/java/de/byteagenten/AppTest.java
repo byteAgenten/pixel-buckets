@@ -45,7 +45,7 @@ public class AppTest {
 
         List<Item> items = new ArrayList<>();
 
-        for (int i = 0; i < 10000000; i++) {
+        for (int i = 0; i < 1000000; i++) {
 
             timestamp += Math.round(r.nextFloat() * meanTimeDistance);
 
@@ -61,7 +61,7 @@ public class AppTest {
         BucketBuilder builder = new BucketBuilder(new BucketBuilderConfig(
                 new TimeRange(from, items.get(items.size()-1).getTimestamp()+10*3600*1000),
                 200,
-                true
+                false
         ));
         builder.setConsumer(bucket -> {
             System.out.println(bucket);

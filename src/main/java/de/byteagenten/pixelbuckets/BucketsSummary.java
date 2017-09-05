@@ -14,6 +14,9 @@ public class BucketsSummary {
 
     private long buildDuration;
 
+    private int minBucketItemCount = 0;
+
+    private int maxBucketItemCount = 0;
 
     public BucketsSummary() {
     }
@@ -34,7 +37,18 @@ public class BucketsSummary {
         this.buildDuration = buildDuration;
     }
 
+    public int getMinBucketItemCount() {
+        return minBucketItemCount;
+    }
+
+    public int getMaxBucketItemCount() {
+        return maxBucketItemCount;
+    }
+
     public void include(Bucket bucket) {
+
+        if( minBucketItemCount == 0 || minBucketItemCount > bucket.getTotals().getItemCount()) minBucketItemCount = bucket.getTotals().getItemCount();
+        if( maxBucketItemCount == 0 || maxBucketItemCount < bucket.getTotals().getItemCount()) maxBucketItemCount = bucket.getTotals().getItemCount();
 
         for (String groupKey : bucket.getGroupKeys()) {
 
@@ -57,6 +71,6 @@ public class BucketsSummary {
 
     public void finish() {
         this.summaries.values().forEach(BucketsSummaryData::finish);
-        this.buildDuration = System.currentTimeMillis() - this.startTimestamp;
+        this.buildDuration = getTotalSummary().hasValue() ? System.currentTimeMillis() - this.startTimestamp : -1;
     }
 }
